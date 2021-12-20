@@ -7,11 +7,13 @@ const app = express();
 const schema = buildSchema(`
   type Query {
     hello: String
+    welcomeMessage(name: String): String
   }
 `);
 
 const root = {
   hello: () => { return 'hello world!'},
+  welcomeMessage: (args: any) => { return `Welcome ${args.name}!`},
 };
 
 app.use('/graphql', graphqlHTTP({

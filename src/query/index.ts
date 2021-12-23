@@ -1,22 +1,21 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import { Person } from '../output-types';
-
-import database from '../fakeDatabase';
+import { PersonType } from '../output-types';
+import { Person } from '../models';
 
 const queryType = new GraphQLObjectType({
   name: 'Query',
   fields: {
     person: {
-      type: Person,
+      type: PersonType,
       args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
       },
-      resolve: (_, args, ctx) => {
+      resolve: async (_, args, ctx) => {
         const name: string = args.name;
-        return database.find(person => person.firstName.toLowerCase() === name.toLowerCase());
+        return await Person.findOne({ firstName: name });
       },
     },
   },
 });
 
-export default queryType
+export default queryType;

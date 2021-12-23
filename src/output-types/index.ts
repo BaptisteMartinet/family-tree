@@ -1,11 +1,11 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql';
 
-export interface PersonT {
-  firstName: string,
-  lastName: string,
+export interface PersonTypeT {
+  firstName: String,
+  lastName: String,
 }
 
-export const Person = new GraphQLObjectType({
+export const PersonType = new GraphQLObjectType({
   name: 'Person',
   fields: {
     firstName: { type: GraphQLString },

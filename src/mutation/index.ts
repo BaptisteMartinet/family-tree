@@ -1,0 +1,21 @@
+import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { PersonType } from '../output-types';
+import { Person } from '../models';
+
+const mutationType = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    createPerson: {
+      type: PersonType,
+      args: {
+        firstName: { type: new GraphQLNonNull(GraphQLString) },
+        lastName: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      async resolve(_, args, ctx) {
+        return await Person.create(...args);
+      },
+    },
+  },
+});
+
+export default mutationType;

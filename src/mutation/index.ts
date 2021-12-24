@@ -7,12 +7,13 @@ const mutationType = new GraphQLObjectType({
   fields: {
     createPerson: {
       type: PersonType,
+      description: 'Create a person in the family tree',
       args: {
         firstName: { type: new GraphQLNonNull(GraphQLString) },
         lastName: { type: new GraphQLNonNull(GraphQLString) },
       },
       async resolve(_, args, ctx) {
-        return await Person.create(...args);
+        return await Person.create(args);
       },
     },
   },

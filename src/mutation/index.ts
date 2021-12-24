@@ -1,6 +1,6 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import { PersonType } from '../output-types';
-import { Person } from '../models';
+import { PersonType } from '@output-types/index';
+import { Person } from '@models/index';
 
 const mutationType = new GraphQLObjectType({
   name: 'Mutation',

@@ -14,6 +14,7 @@ const PORT = 3000;
   const schema = new GraphQLSchema({ query: queryType, mutation: mutationType });
   console.info('Successfully built the GraphQL schema.');
   const app = express();
+  app.get('/', (req, res) => { res.redirect('/graphql'); });
   app.use('/graphql', graphqlHTTP({
     graphiql: true,
     schema,

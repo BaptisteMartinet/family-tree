@@ -1,2 +1,2 @@
 # family-tree
-My first very one project using GraphQL
+My first very own project using GraphQL

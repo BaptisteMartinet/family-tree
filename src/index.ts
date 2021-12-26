@@ -6,10 +6,12 @@ import mongoose from 'mongoose';
 import queryType from './query';
 import mutationType from './mutation';
 
+// TODO: move to env file
+const DATABASE_URL = 'mongodb://localhost:27017/family-tree';
 const PORT = 3000;
 
 (async () => {
-  await mongoose.connect('mongodb://localhost:27017/family-tree');
+  await mongoose.connect(DATABASE_URL);
   console.info('Successfully connected to MongoDB.');
   const schema = new GraphQLSchema({ query: queryType, mutation: mutationType });
   console.info('Successfully built the GraphQL schema.');

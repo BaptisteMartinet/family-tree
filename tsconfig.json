@@ -18,6 +18,7 @@
     "paths": {
       "@models/*": [ "models/*" ],
       "@output-types/*": [ "output-types/*" ],
+      "@utils/*": [ "utils/*" ],
     }
   },
   "exclude": [ "node_modules", "build" ],

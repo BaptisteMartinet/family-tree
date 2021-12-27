@@ -8,7 +8,9 @@ import queryType from './query';
 import mutationType from './mutation';
 
 (async () => {
-  await mongoose.connect(DATABASE_URL ?? "");
+  if (DATABASE_URL === undefined || PORT === undefined)
+    throw new Error('DATABASE_URL & PORT env variables needed.');
+  await mongoose.connect(DATABASE_URL);
   console.info('Successfully connected to MongoDB.');
   const schema = new GraphQLSchema({ query: queryType, mutation: mutationType });
   console.info('Successfully built the GraphQL schema.');

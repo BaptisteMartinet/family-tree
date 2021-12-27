@@ -2,6 +2,7 @@ import { GraphQLObjectType, GraphQLString } from 'graphql';
 import { GraphQLDate } from 'utils/scalars/index';
 
 export interface PersonTypeT {
+  id: string,
   firstName: string,
   lastName: string,
   birthDate: Date,

@@ -8,6 +8,7 @@ export interface PersonTypeT {
 export const PersonType = new GraphQLObjectType({
   name: 'Person',
   fields: {
+    id: { type: GraphQLString },
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
   },

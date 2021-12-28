@@ -16,7 +16,22 @@ const PersonMutation = new GraphQLObjectType({
       },
       async resolve(_, args, ctx) {
         return await Person.create(args);
+      }
+    },
+
+    update: {
+      type: PersonType,
+      args: {
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
+        birthDate: { type: GraphQLDate },
+        deathDate: { type: GraphQLDate },
       },
+      async resolve(source, args, ctx) {
+        if (Object.keys(source).length === 0)
+          throw new Error('Source needed to perform update');
+        return await Person.findByIdAndUpdate(source.id, args, { new: true });
+      }
     },
   }
 });

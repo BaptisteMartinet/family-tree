@@ -1,11 +1,8 @@
 import { DATABASE_URL, PORT } from '@utils/env/index';
 import express from 'express';
-import { GraphQLSchema } from 'graphql';
 import { graphqlHTTP } from 'express-graphql';
 import mongoose from 'mongoose';
-
-import queryType from './query';
-import mutationType from './mutation';
+import schema from './schema';
 
 (async () => {
   if (DATABASE_URL === undefined || PORT === undefined)
@@ -13,8 +10,6 @@ import mutationType from './mutation';
   mongoose.set('debug', true);
   await mongoose.connect(DATABASE_URL);
   console.info('Successfully connected to MongoDB.');
-  const schema = new GraphQLSchema({ query: queryType, mutation: mutationType });
-  console.info('Successfully built the GraphQL schema.');
   const app = express();
   app.get('/', (req, res) => { res.redirect('/graphql'); });
   app.use('/graphql', graphqlHTTP({

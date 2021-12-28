@@ -6,7 +6,9 @@
   "scripts": {
     "start": "cross-env TS_NODE_BASEURL=./build node --require tsconfig-paths/register ./build/index.js",
     "build": "tsc",
-    "watch": "tsc-watch --onSuccess \"yarn start\""
+    "watch": "tsc-watch --onSuccess \"yarn start\"",
+    "run-script": "yarn --silent tsc && cross-env TS_NODE_BASEURL=./build node --require tsconfig-paths/register",
+    "gs": "yarn --silent run-script ./build/scripts/print-schema.js > schema.graphql"
   },
   "repository": {
     "type": "git",

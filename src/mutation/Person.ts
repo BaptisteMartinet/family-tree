@@ -30,7 +30,8 @@ const PersonMutation = new GraphQLObjectType({
       async resolve(source, args, ctx) {
         if (Object.keys(source).length === 0)
           throw new Error('Source needed to perform update');
-        return await Person.findByIdAndUpdate(source.id, args, { new: true });
+        source._doc = Object.assign(source._doc, args);
+        return await source.save();
       }
     },
   }

@@ -1,0 +1,23 @@
+"""Date custom scalar type"""
+scalar Date
+
+type Mutation {
+  person(id: String): PersonMutation
+}
+
+type Person {
+  id: String
+  firstName: String
+  lastName: String
+  birthDate: Date
+  deathDate: Date
+}
+
+type PersonMutation {
+  create(firstName: String!, lastName: String!, birthDate: Date, deathDate: Date): Person
+  update(firstName: String, lastName: String, birthDate: Date, deathDate: Date): Person
+}
+
+type Query {
+  person(name: String!): Person
+}

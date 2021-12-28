@@ -14,7 +14,9 @@ const mutationType = new GraphQLObjectType({
         if (id === undefined)
           return {};
         const person = await Person.findById(id);
-        return person ?? {};
+        if (person === null)
+          throw new Error(`Person#${id} does not exist`);
+        return person;
       }
     },
   }

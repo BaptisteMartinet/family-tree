@@ -5,7 +5,7 @@ const PersonSchema = new Schema({
   lastName: { type: String, required: true },
   birthDate: { type: Date, required: false },
   deathDate: { type: Date, required: false },
-});
+}, { timestamps: true });
 
 const Person = mongoose.model('Person', PersonSchema, 'persons');
 

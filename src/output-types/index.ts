@@ -17,5 +17,7 @@ export const PersonType = new GraphQLObjectType({
     lastName: { type: GraphQLString },
     birthDate: { type: GraphQLDate },
     deathDate: { type: GraphQLDate },
+    createdAt: { type: GraphQLDate },
+    updatedAt: { type: GraphQLDate },
   },
 });

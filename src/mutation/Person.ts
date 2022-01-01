@@ -1,9 +1,9 @@
 import type { RelationArgsT } from 'input-types/index';
 
 import { GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import { PersonType } from '@output-types/index';
-import { Person, Relation } from '@models/index';
 import { GraphQLDate } from '@utils/scalars';
+import { Person, Relation } from '@models/index';
+import { PersonType } from '@output-types/index';
 import { RelationArgs } from '@input-types/index';
 
 const PersonMutation = new GraphQLObjectType({

@@ -1,6 +1,6 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import { PersonType } from '@output-types/index';
 import { Person } from '@models/index';
+import { PersonType } from '@output-types/index';
 
 const queryType = new GraphQLObjectType({
   name: 'Query',

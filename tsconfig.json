@@ -18,6 +18,7 @@
     "paths": {
       "@models/*": [ "models/*" ],
       "@output-types/*": [ "output-types/*" ],
+      "@input-types/*": [ "input-types/*" ],
       "@utils/*": [ "utils/*" ],
       "@enums/*": [ "enums/*" ],
     }

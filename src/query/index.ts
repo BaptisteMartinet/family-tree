@@ -8,11 +8,10 @@ const queryType = new GraphQLObjectType({
     person: {
       type: PersonType,
       args: {
-        name: { type: new GraphQLNonNull(GraphQLString) },
+        id: { type: new GraphQLNonNull(GraphQLString) },
       },
       async resolve(_, args, ctx) {
-        const name: string = args.name;
-        return await Person.findOne({ firstName: name });
+        return await Person.findById(args.id);
       },
     },
   },

@@ -11,6 +11,8 @@ type Person {
   lastName: String
   birthDate: Date
   deathDate: Date
+  createdAt: Date
+  updatedAt: Date
 }
 
 type PersonMutation {

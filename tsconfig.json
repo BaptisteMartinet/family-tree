@@ -19,6 +19,7 @@
       "@models/*": [ "models/*" ],
       "@output-types/*": [ "output-types/*" ],
       "@utils/*": [ "utils/*" ],
+      "@enums/*": [ "enums/*" ],
     }
   },
   "exclude": [ "node_modules", "build" ],

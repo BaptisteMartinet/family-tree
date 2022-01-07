@@ -8,7 +8,7 @@ export const RelationTypeEnum = new GraphQLEnumType({
   name: 'RelationTypeEnum',
   values: {
     PARENT: { value: 'PARENT' },
-  },
+  }
 });
 
 export enum GenreEnumT {

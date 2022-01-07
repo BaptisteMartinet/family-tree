@@ -7,6 +7,7 @@ const PersonSchema = new Schema({
   genre: { type: String, enum: Object.values(GenreEnumT), required: true },
   birthDate: { type: Date, required: false },
   deathDate: { type: Date, required: false },
+  birthCity: { type: String, required: false },
 }, { timestamps: true });
 
 const Person = mongoose.model('Person', PersonSchema, 'persons');

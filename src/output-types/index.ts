@@ -12,6 +12,7 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
     genre: { type: GenreEnum },
     birthDate: { type: GraphQLDate },
     deathDate: { type: GraphQLDate },
+    birthCity: { type: GraphQLString },
     parents: {
       type: new GraphQLList(PersonType),
       async resolve(source, args, ctx) {

@@ -44,8 +44,7 @@ const PersonMutation = new GraphQLObjectType({
       async resolve(parent, args, ctx) {
         if (Object.keys(parent).length === 0)
           throw new Error('Parent needed to perform update');
-          parent._doc = Object.assign(parent._doc, args);
-        return await parent.save();
+        return await Person.findOneAndUpdate(parent, args, { new: true }).exec();
       }
     },
   }

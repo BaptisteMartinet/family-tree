@@ -31,6 +31,7 @@ type PersonMutation {
 
 type Query {
   person(id: String!): Person
+  persons: [Person!]
 }
 
 input RelationArgs {

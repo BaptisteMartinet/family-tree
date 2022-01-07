@@ -11,7 +11,7 @@ const queryType = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLString) },
       },
       async resolve(_, args, ctx) {
-        return await Person.findById(args.id);
+        return await Person.findById(args.id).exec();
       },
     },
     persons: {

@@ -24,9 +24,9 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
         const parentRelations = await Relation.find({
           source: parent.id,
           type: RelationTypeEnumT.PARENT,
-        });
+        }).exec();
         const parentIds = parentRelations.map(parentRelation => (parentRelation.target));
-        return await Person.find({ _id: { $in: parentIds } });
+        return await Person.find({ _id: { $in: parentIds } }).exec();
       },
     },
 
@@ -36,9 +36,9 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
         const childRelations = await Relation.find({
           target: parent.id,
           type: RelationTypeEnumT.PARENT,
-        });
+        }).exec();
         const childIds = childRelations.map(childRelation => (childRelation.source));
-        return await Person.find({ _id: { $in: childIds } });
+        return await Person.find({ _id: { $in: childIds } }).exec();
       },
     }
   }),

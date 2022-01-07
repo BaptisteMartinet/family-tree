@@ -13,6 +13,11 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
     birthDate: { type: GraphQLDate },
     deathDate: { type: GraphQLDate },
     birthCity: { type: GraphQLString },
+    createdAt: { type: GraphQLDate },
+    updatedAt: { type: GraphQLDate },
+
+    // Custom resolvers (i.e. computed data)
+
     parents: {
       type: new GraphQLList(PersonType),
       async resolve(source, args, ctx) {
@@ -24,7 +29,5 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
         return await Person.find({ _id: { $in: parentIds } });
       },
     },
-    createdAt: { type: GraphQLDate },
-    updatedAt: { type: GraphQLDate },
   }),
 });

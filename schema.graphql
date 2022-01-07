@@ -11,15 +11,25 @@ type Person {
   lastName: String
   birthDate: Date
   deathDate: Date
+  parents: [Person]
   createdAt: Date
   updatedAt: Date
 }
 
 type PersonMutation {
-  create(firstName: String!, lastName: String!, birthDate: Date, deathDate: Date): Person
+  create(firstName: String!, lastName: String!, birthDate: Date, deathDate: Date, relations: [RelationArgs!]): Person
   update(firstName: String, lastName: String, birthDate: Date, deathDate: Date): Person
 }
 
 type Query {
-  person(name: String!): Person
+  person(id: String!): Person
+}
+
+input RelationArgs {
+  target: String!
+  type: RelationTypeEnum!
+}
+
+enum RelationTypeEnum {
+  PARENT
 }

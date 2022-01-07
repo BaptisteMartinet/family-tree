@@ -21,6 +21,7 @@ type Person {
   createdAt: Date
   updatedAt: Date
   parents: [Person]
+  childs: [Person]
 }
 
 type PersonMutation {

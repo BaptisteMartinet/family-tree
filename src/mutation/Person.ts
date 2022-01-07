@@ -36,11 +36,11 @@ const PersonMutation = new GraphQLObjectType({
         birthDate: { type: GraphQLDate },
         deathDate: { type: GraphQLDate },
       },
-      async resolve(source, args, ctx) {
-        if (Object.keys(source).length === 0)
-          throw new Error('Source needed to perform update');
-        source._doc = Object.assign(source._doc, args);
-        return await source.save();
+      async resolve(parent, args, ctx) {
+        if (Object.keys(parent).length === 0)
+          throw new Error('Parent needed to perform update');
+          parent._doc = Object.assign(parent._doc, args);
+        return await parent.save();
       }
     },
   }

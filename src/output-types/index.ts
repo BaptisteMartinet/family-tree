@@ -20,9 +20,9 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
 
     parents: {
       type: new GraphQLList(PersonType),
-      async resolve(source, args, ctx) {
+      async resolve(parent, args, ctx, info) {
         const parentRelations = await Relation.find({
-          source: source.id,
+          source: parent.id,
           type: RelationTypeEnumT.PARENT,
         });
         const parentIds = parentRelations.map(parentRelation => (parentRelation.target));
@@ -32,7 +32,7 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
 
     childs: {
       type: new GraphQLList(PersonType),
-      async resolve(parent, args, ctx, infos) {
+      async resolve(parent, args, ctx, info) {
         const childRelations = await Relation.find({
           target: parent.id,
           type: RelationTypeEnumT.PARENT,

@@ -16,7 +16,7 @@ const PersonMutation = new GraphQLObjectType({
         firstName: { type: new GraphQLNonNull(GraphQLString) },
         lastName: { type: new GraphQLNonNull(GraphQLString) },
         genre: { type: new GraphQLNonNull(GenreEnum) },
-        birthDate: { type: GraphQLDate },
+        birthDate: { type: new GraphQLNonNull(GraphQLDate) },
         deathDate: { type: GraphQLDate },
         birthCity: { type: GraphQLString },
         relations: { type: new GraphQLList(new GraphQLNonNull(RelationArgs)) },

@@ -22,8 +22,8 @@ const PersonMutation = new GraphQLObjectType({
         relations: { type: new GraphQLList(new GraphQLNonNull(RelationArgs)) },
       },
       async resolve(_, args, ctx) {
-        const { relations, ...rest } = args;
-        const newPerson = await Person.create(rest);
+        const { relations, firstName, lastName, genre, birthDate, ...rest } = args;
+        const newPerson = await Person.findOneAndUpdate({ firstName, lastName, genre, birthDate }, rest, { upsert: true, new: true }).exec();
         if (relations) {
           await Relation.insertMany(relations.map((relation: RelationArgsT) => ({ source: newPerson.id, ...relation })));
         }

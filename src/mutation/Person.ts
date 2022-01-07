@@ -5,6 +5,7 @@ import { GraphQLDate } from '@utils/scalars';
 import { Person, Relation } from '@models/index';
 import { PersonType } from '@output-types/index';
 import { RelationArgs } from '@input-types/index';
+import { GenreEnum } from '@enums/index';
 
 const PersonMutation = new GraphQLObjectType({
   name: 'PersonMutation',
@@ -14,6 +15,7 @@ const PersonMutation = new GraphQLObjectType({
       args: {
         firstName: { type: new GraphQLNonNull(GraphQLString) },
         lastName: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GenreEnum) },
         birthDate: { type: GraphQLDate },
         deathDate: { type: GraphQLDate },
         relations: { type: new GraphQLList(new GraphQLNonNull(RelationArgs)) },
@@ -33,6 +35,7 @@ const PersonMutation = new GraphQLObjectType({
       args: {
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
+        genre: { type: GenreEnum },
         birthDate: { type: GraphQLDate },
         deathDate: { type: GraphQLDate },
       },

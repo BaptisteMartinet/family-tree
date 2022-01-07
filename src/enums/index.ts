@@ -10,3 +10,16 @@ export const RelationTypeEnum = new GraphQLEnumType({
     PARENT: { value: 'PARENT' },
   },
 });
+
+export enum GenreEnumT {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+}
+
+export const GenreEnum = new GraphQLEnumType({
+  name: 'GenreEnum',
+  values: {
+    MALE: { value: 'MALE' },
+    FEMALE: { value: 'FEMALE' },
+  }
+});

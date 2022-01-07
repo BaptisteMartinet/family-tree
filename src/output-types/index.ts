@@ -1,7 +1,7 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
 import { GraphQLDate } from 'utils/scalars/index';
 import { Person, Relation } from '@models/index';
-import { RelationTypeEnumT } from '@enums/index';
+import { GenreEnum, RelationTypeEnumT } from '@enums/index';
 
 export const PersonType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Person',
@@ -9,6 +9,7 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
     id: { type: GraphQLString },
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
+    genre: { type: GenreEnum },
     birthDate: { type: GraphQLDate },
     deathDate: { type: GraphQLDate },
     parents: {

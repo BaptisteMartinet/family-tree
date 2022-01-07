@@ -29,5 +29,17 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
         return await Person.find({ _id: { $in: parentIds } });
       },
     },
+
+    childs: {
+      type: new GraphQLList(PersonType),
+      async resolve(parent, args, ctx, infos) {
+        const childRelations = await Relation.find({
+          target: parent.id,
+          type: RelationTypeEnumT.PARENT,
+        });
+        const childIds = childRelations.map(childRelation => (childRelation.source));
+        return await Person.find({ _id: { $in: childIds } });
+      },
+    }
   }),
 });

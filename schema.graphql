@@ -17,14 +17,15 @@ type Person {
   genre: GenreEnum
   birthDate: Date
   deathDate: Date
-  parents: [Person]
+  birthCity: String
   createdAt: Date
   updatedAt: Date
+  parents: [Person]
 }
 
 type PersonMutation {
-  create(firstName: String!, lastName: String!, genre: GenreEnum!, birthDate: Date, deathDate: Date, relations: [RelationArgs!]): Person
-  update(firstName: String, lastName: String, genre: GenreEnum, birthDate: Date, deathDate: Date): Person
+  create(firstName: String!, lastName: String!, genre: GenreEnum!, birthDate: Date, deathDate: Date, birthCity: String, relations: [RelationArgs!]): Person
+  update(firstName: String, lastName: String, genre: GenreEnum, birthDate: Date, deathDate: Date, birthCity: String): Person
 }
 
 type Query {

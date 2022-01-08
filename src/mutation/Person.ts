@@ -1,10 +1,7 @@
-import type { RelationArgsT } from 'input-types/index';
-
-import { GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import { GraphQLDate } from '@utils/scalars';
-import { Person, Relation } from '@models/index';
+import { Person } from '@models/index';
 import { PersonType } from '@output-types/index';
-import { RelationArgs } from '@input-types/index';
 import { GenreEnum } from '@enums/index';
 
 const PersonMutation = new GraphQLObjectType({
@@ -19,14 +16,10 @@ const PersonMutation = new GraphQLObjectType({
         birthDate: { type: new GraphQLNonNull(GraphQLDate) },
         deathDate: { type: GraphQLDate },
         birthCity: { type: GraphQLString },
-        relations: { type: new GraphQLList(new GraphQLNonNull(RelationArgs)) },
       },
       async resolve(_, args, ctx) {
-        const { relations, firstName, lastName, genre, birthDate, ...rest } = args;
+        const { firstName, lastName, genre, birthDate, ...rest } = args;
         const newPerson = await Person.findOneAndUpdate({ firstName, lastName, genre, birthDate }, rest, { upsert: true, new: true }).exec();
-        if (relations) {
-          await Relation.insertMany(relations.map((relation: RelationArgsT) => ({ source: newPerson.id, ...relation })));
-        }
         return newPerson;
       }
     },

@@ -1,7 +1,7 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
 import { GraphQLDate } from 'utils/scalars/index';
 import { Person, Relation } from '@models/index';
-import { GenreEnum, RelationTypeEnumT } from '@enums/index';
+import { GenreEnum, RelationTypeEnum, RelationTypeEnumT } from '@enums/index';
 
 export const PersonType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Person',
@@ -22,10 +22,10 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
       type: new GraphQLList(PersonType),
       async resolve(parent, args, ctx, info) {
         const parentRelations = await Relation.find({
-          source: parent.id,
+          sourceId: parent.id,
           type: RelationTypeEnumT.PARENT,
         }).exec();
-        const parentIds = parentRelations.map(parentRelation => (parentRelation.target));
+        const parentIds = parentRelations.map(parentRelation => (parentRelation.targetId));
         return await Person.find({ _id: { $in: parentIds } }).exec();
       },
     },
@@ -34,12 +34,22 @@ export const PersonType: GraphQLObjectType = new GraphQLObjectType({
       type: new GraphQLList(PersonType),
       async resolve(parent, args, ctx, info) {
         const childRelations = await Relation.find({
-          target: parent.id,
+          targetId: parent.id,
           type: RelationTypeEnumT.PARENT,
         }).exec();
-        const childIds = childRelations.map(childRelation => (childRelation.source));
+        const childIds = childRelations.map(childRelation => (childRelation.sourceId));
         return await Person.find({ _id: { $in: childIds } }).exec();
       },
     }
   }),
+});
+
+export const RelationType = new GraphQLObjectType({
+  name: 'RelationType',
+  fields: {
+    id: { type: GraphQLString },
+    source: { type: PersonType, resolve: async (parent) => (await Person.findById(parent.sourceId)) },
+    target: { type: PersonType, resolve: async (parent) => (await Person.findById(parent.targetId)) },
+    type: { type: RelationTypeEnum },
+  }
 });

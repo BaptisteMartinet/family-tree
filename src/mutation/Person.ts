@@ -19,8 +19,7 @@ const PersonMutation = new GraphQLObjectType({
       },
       async resolve(_, args, ctx) {
         const { firstName, lastName, genre, birthDate, ...rest } = args;
-        const newPerson = await Person.findOneAndUpdate({ firstName, lastName, genre, birthDate }, rest, { upsert: true, new: true }).exec();
-        return newPerson;
+        return await Person.findOneAndUpdate({ firstName, lastName, genre, birthDate }, rest, { upsert: true, new: true }).exec();
       }
     },
 

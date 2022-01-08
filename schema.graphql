@@ -8,6 +8,7 @@ enum GenreEnum {
 
 type Mutation {
   person(id: String): PersonMutation
+  relation(id: String): RelationMutation
 }
 
 type Person {
@@ -25,7 +26,7 @@ type Person {
 }
 
 type PersonMutation {
-  create(firstName: String!, lastName: String!, genre: GenreEnum!, birthDate: Date!, deathDate: Date, birthCity: String, relations: [RelationArgs!]): Person
+  create(firstName: String!, lastName: String!, genre: GenreEnum!, birthDate: Date!, deathDate: Date, birthCity: String): Person
   update(firstName: String, lastName: String, genre: GenreEnum, birthDate: Date, deathDate: Date, birthCity: String): Person
 }
 
@@ -34,9 +35,15 @@ type Query {
   persons: [Person!]
 }
 
-input RelationArgs {
-  target: String!
-  type: RelationTypeEnum!
+type RelationMutation {
+  create(sourceId: String!, targetId: String!, type: RelationTypeEnum!): RelationType
+}
+
+type RelationType {
+  id: String
+  source: Person
+  target: Person
+  type: RelationTypeEnum
 }
 
 enum RelationTypeEnum {
